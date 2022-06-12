@@ -1,6 +1,4 @@
 //contact.js
-const express = require('express');
-const router = express.Router();
 const nodemailer = require('nodemailer');
 const { google } = require('googleapis');
 require("dotenv").config();
