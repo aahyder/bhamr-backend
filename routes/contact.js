@@ -14,6 +14,7 @@ oAuth2Client.setCredentials({ refresh_token: GOOGLE_REFRESH_TOKEN});
 router.post('/contact', (req, res, next) => {
     // send req body values to email
     // firstName, lastName, email, company, phone, msg, type
+    console.log(req.body)
     sendMail(
         req.body.firstName,
         req.body.lastName,
