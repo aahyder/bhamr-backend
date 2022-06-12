@@ -1,12 +1,33 @@
 //contact.js
+const express = require("express");
 const nodemailer = require('nodemailer');
 const { google } = require('googleapis');
 require("dotenv").config();
 const GOOGLE_REFRESH_TOKEN = process.env.GOOGLE_REFRESH_TOKEN;
+const router = express.Router();
 
 //create oauth client and retrieve new refresh token
 const oAuth2Client = new google.auth.OAuth2(process.env.GOOGLE_CLIENT_ID_MAIL, process.env.GOOGLE_CLIENT_SECRET_MAIL, process.env.GOOGLE_REDIRECT_URI);
 oAuth2Client.setCredentials({ refresh_token: GOOGLE_REFRESH_TOKEN});
+
+//routes
+router.post('/contact', (req, res, next) => {
+    // send req body values to email
+    // firstName, lastName, email, company, phone, msg, type
+    contact.sendMail(
+        req.body.firstName,
+        req.body.lastName,
+        req.body.email,
+        req.body.company,
+        req.body.phone,
+        req.body.msg,
+        req.body.type
+    ).then(
+        (result) => console.log('Email sent . . . ', result)
+    ).catch(
+        (error) => console.log('Error mailing . . .', error.message)
+    );
+})
 
 async function sendMail(firstName, lastName, email, company, phone, msg, type) {
     // send email to ben hyder when contact form is filled out
@@ -62,4 +83,4 @@ async function sendMail(firstName, lastName, email, company, phone, msg, type) {
     }
 }
 
-module.exports = {sendMail};
+module.exports = router;
