@@ -4,7 +4,7 @@
   "description": "backend server for bhamr",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "npm start"
   },
   "repository": {
     "type": "git",
