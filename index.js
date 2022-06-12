@@ -3,25 +3,16 @@ const express = require("express");
 const contact = require("./routes/contact");
 const port = process.env.PORT || 4000;
 const app = express();
-const router = express.Router();
+const contactRouter = require('./routes/contact');
 
-router.post('/contact', (req, res, next) => {
-    // send req body values to email
-    // firstName, lastName, email, company, phone, msg, type
-    contact.sendMail(
-        req.body.firstName,
-        req.body.lastName,
-        req.body.email,
-        req.body.company,
-        req.body.phone,
-        req.body.msg,
-        req.body.type
-    ).then(
-        (result) => console.log('Email sent . . . ', result)
-    ).catch(
-        (error) => console.log('Error mailing . . .', error.message)
-    );
-})
+// serve routes
+app.use('/', contactRouter);
+
+// error handling
+app.use((err, req, res, next) => {
+    res.status(err.status || 500);
+    res.send(err.message);
+});
 
 // error handling - 404
 app.use((req, res, next) =>  {
