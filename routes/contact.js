@@ -11,7 +11,7 @@ const oAuth2Client = new google.auth.OAuth2(process.env.GOOGLE_CLIENT_ID_MAIL, p
 oAuth2Client.setCredentials({ refresh_token: GOOGLE_REFRESH_TOKEN});
 
 //routes
-router.post('/contact', (req, res, next) => {
+router.post('/api/contact', (req, res, next) => {
     // send req body values to email
     // firstName, lastName, email, company, phone, msg, type
     contact.sendMail(
