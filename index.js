@@ -1,6 +1,5 @@
 //index.js
 const express = require("express");
-const contact = require("./routes/contact");
 const port = process.env.PORT || 4000;
 const app = express();
 const contactRouter = require('./routes/contact');
