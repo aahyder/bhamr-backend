@@ -2,7 +2,7 @@
 const express = require("express");
 const port = process.env.PORT || 4000;
 const app = express();
-const contactRouter = require('./routes/contact');
+const contactRouter = require('./routes/contact.js');
 
 // serve routes
 app.use('/', contactRouter);
